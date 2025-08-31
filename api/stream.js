@@ -2,11 +2,13 @@ export const config = { runtime: 'edge' };
 
 export default async function (req) {
   try {
-    const { searchParams } = new URL(req.url);
-    const raw = searchParams.get('url');
-    if (!raw) return new Response('Falta url', { status: 400 });
+    const url = new URL(req.url);
+    const raw = url.searchParams.get('url');
+    if (!raw) return new Response('Falta ?url=...', { status: 400 });
 
-    const res = await globalThis.fetch(raw, {
+    console.log('Proxying:', raw);   // aparecerá en Logs de Vercel
+
+    const res = await fetch(raw, {
       headers: {
         'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
         referer: 'https://topembed.pw/',
@@ -15,9 +17,12 @@ export default async function (req) {
       redirect: 'follow'
     });
 
+    console.log('Upstream status:', res.status, res.statusText);
+
     if (!res.ok) {
+      const text = await res.text();
       return new Response(
-        `Upstream error: ${res.status} ${res.statusText}`,
+        `Upstream ${res.status}: ${text.slice(0, 300)}`,
         { status: res.status }
       );
     }
@@ -32,6 +37,6 @@ export default async function (req) {
     });
 
   } catch (err) {
-    return new Response(`Crash: ${err.message}`, { status: 500 });
+    return new Response(`Error interno: ${err.message}`, { status: 500 });
   }
 }
