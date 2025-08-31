@@ -15,8 +15,7 @@ export default async function handler(req) {
     });
 
     if (!res.ok) {
-      const txt = await res.text();
-      return new Response(`Upstream ${res.status}: ${txt.slice(0, 300)}`, { status: res.status });
+      return new Response(`Upstream ${res.status}`, { status: res.status });
     }
 
     return new Response(res.body, {
