@@ -31,27 +31,11 @@
     .main-container {
       display: flex;
       flex-direction: row;
-      margin-top: 60px; /* Espacio para el header fijo */
+      margin-top: 60px;
       width: 100%;
       height: calc(100vh - 60px);
     }
-    .iframe-container {
-      flex: 3;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      background-color: #000;
-    }
-    iframe {
-      width: 100%;
-      height: 100%;
-      max-width: 1200px;
-      max-height: 720px;
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
-    }
+    .iframe-container { display: none; } /* Ya no se usa */
     nav {
       flex: 1;
       background-color: #222;
@@ -60,7 +44,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       overflow-y: auto;
-      max-height: calc(100vh - 60px); /* Ajusta al espacio disponible */
+      max-height: calc(100vh - 60px);
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       scrollbar-color: #00ffcc #333;
@@ -75,7 +59,7 @@
     nav::-webkit-scrollbar-track {
       background-color: #333;
     }
-    nav button {
+    nav a {
       margin: 5px;
       padding: 8px 15px;
       background-color: #00ffcc;
@@ -89,62 +73,24 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      text-decoration: none;
     }
-    nav button img {
+    nav a img {
       width: 18px;
       height: 18px;
       margin-right: 6px;
     }
-    nav button:hover {
+    nav a:hover {
       background-color: #00ddaa;
     }
 
-    /* Media Queries para pantallas pequeñas y orientación */
     @media (max-width: 768px) {
       .main-container {
         flex-direction: column;
       }
-      .iframe-container {
-        flex: none;
-        width: 100%;
-        padding: 10px;
-      }
-      iframe {
-        width: 100%;
-        height: 50vh;
-      }
       nav {
-        flex: none;
-        width: 100%;
         grid-template-columns: repeat(2, 1fr);
-        max-height: 40vh;
-        padding-bottom: 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        font-size: clamp(16px, 4vw, 18px);
-      }
-      nav button {
-        font-size: clamp(10px, 2.5vw, 12px);
-        padding: 6px 10px;
-      }
-      nav button img {
-        width: 16px;
-        height: 16px;
-      }
-      iframe {
-        height: 40vh;
-      }
-    }
-
-    @media (orientation: portrait) and (max-width: 768px) {
-      .main-container {
-        flex-direction: column;
-      }
-      nav {
-        max-height: 50vh;
+        max-height: 100vh;
       }
     }
   </style>
@@ -155,73 +101,55 @@
   </header>
 
   <div class="main-container">
-    <div class="iframe-container">
-      <iframe id="reproductor" src="https://topembed.pw/channel/SkySportsNews[UK]" frameborder="0" allowfullscreen muted="false"></iframe>
-    </div>
-
+    <!-- El iframe ya no se usa -->
     <nav>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsNews[UK]')">
+      <!-- Solo se cambiaron los href y se eliminó onclick -->
+      <a href="wiseplay://topembed.pw/channel/SkySportsNews [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-news-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports News">Sky Sports News
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsMainEvent[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsMainEvent [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-main-event-logo-2A8C7C1C4A-seeklogo.com.png" alt="Sky Sports Main Event">Sky Sports Main Event
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsArena[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsArena [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-arena-logo-8D8E1D3E8D-seeklogo.com.png" alt="Sky Sports Arena">Sky Sports Arena
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsAction[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsAction [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-action-logo-6E1E1D3E8D-seeklogo.com.png" alt="Sky Sports Action">Sky Sports Action
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsF1[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsF1 [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-f1-logo-4A8C7C1C4A-seeklogo.com.png" alt="Sky Sports F1">Sky Sports F1
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsPremierLeague[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsPremierLeague [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-premier-league-logo-6E1E1D3E8D-seeklogo.com.png" alt="Sky Sports Premier League">Sky Sports Premier League
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsFootball[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsFootball [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-football-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports Football">Sky Sports Football
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsGolf[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsGolf [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-golf-logo-2A8C7C1C4A-seeklogo.com.png" alt="Sky Sports Golf">Sky Sports Golf
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsTennis[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsTennis [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-tennis-logo-8D8E1D3E8D-seeklogo.com.png" alt="Sky Sports Tennis">Sky Sports Tennis
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsMix[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsMix [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-mix-logo-6E1E1D3E8D-seeklogo.com.png" alt="Sky Sports Mix">Sky Sports Mix
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsRacing[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/SkySportsRacing [UK]">
         <img src="https://seeklogo.com/images/S/sky-sports-racing-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports Racing">Sky Sports Racing
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/TNTSports1[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/TNTSports1 [UK]">
         <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 1">TNT Sports 1
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/TNTSports2[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/TNTSports2 [UK]">
         <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 2">TNT Sports 2
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/TNTSports3[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/TNTSports3 [UK]">
         <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 3">TNT Sports 3
-      </button>
-      <button onclick="cambiarCanal('https://topembed.pw/channel/TNTSports4[UK]')">
+      </a>
+      <a href="wiseplay://topembed.pw/channel/TNTSports4 [UK]">
         <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 4">TNT Sports 4
-      </button>
+      </a>
     </nav>
   </div>
-
-  <script>
-    function cambiarCanal(url) {
-      const reproductor = document.getElementById('reproductor');
-      reproductor.src = url;
-      reproductor.muted = false; // Intenta activar el sonido (puede no funcionar por políticas del navegador)
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // Desplaza al reproductor
-    }
-
-    // Iniciar con el primer canal y sonido activado
-    document.addEventListener('DOMContentLoaded', () => {
-      const reproductor = document.getElementById('reproductor');
-      reproductor.src = 'https://topembed.pw/channel/SkySportsNews[UK]';
-      reproductor.muted = false; // Intenta activar el sonido al cargar
-    });
-  </script>
 </body>
 </html>
