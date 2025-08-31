@@ -1,7 +1,8 @@
 {
+  "version": 2,
   "functions": {
     "api/stream.js": {
-      "runtime": "edge"
+      "runtime": "vercel/node@20.x"
     }
   }
 }
