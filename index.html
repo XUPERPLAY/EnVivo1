@@ -36,19 +36,20 @@
     nav {
       background-color: #222;
       padding: 10px;
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      white-space: nowrap;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      max-height: calc(100vh - 580px); /* Ajusta según la altura del reproductor y header */
+      overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       scrollbar-color: #00ffcc #333;
     }
     nav::-webkit-scrollbar {
-      height: 8px;
+      width: 8px;
     }
     nav::-webkit-scrollbar-thumb {
-      background-color: Zahid Ali;
+      background-color: #00ffcc;
       border-radius: 4px;
     }
     nav::-webkit-scrollbar-track {
@@ -63,9 +64,10 @@
       cursor: pointer;
       color: black;
       font-weight: bold;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      flex: 0 0 auto;
+      justify-content: center;
+      text-align: center;
     }
     nav button img {
       width: 20px;
