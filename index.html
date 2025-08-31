@@ -19,12 +19,40 @@
       font-weight: bold;
       color: #00ffcc;
     }
+    .iframe-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: #000;
+    }
+    iframe {
+      width: 80%;
+      height: 480px;
+      border: none;
+    }
     nav {
       background-color: #222;
       padding: 10px;
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #00ffcc #333;
+    }
+    nav::-webkit-scrollbar {
+      height: 8px;
+    }
+    nav::-webkit-scrollbar-thumb {
+      background-color: Zahid Ali;
+      border-radius: 4px;
+    }
+    nav::-webkit-scrollbar-track {
+      background-color: #333;
     }
     nav button {
       margin: 5px;
@@ -35,8 +63,9 @@
       cursor: pointer;
       color: black;
       font-weight: bold;
-      display: flex;
+      display: inline-flex;
       align-items: center;
+      flex: 0 0 auto;
     }
     nav button img {
       width: 20px;
@@ -46,23 +75,16 @@
     nav button:hover {
       background-color: #00ddaa;
     }
-    .iframe-container {
-      display: flex;
-      justify-content: center;
-      padding: 20px;
-    }
-    iframe {
-      width: 80%;
-      height: 480px;
-      border: none;
-    }
   </style>
 </head>
 <body>
-
   <header>
     🏟️ Deportes en Vivo 2025
   </header>
+
+  <div class="iframe-container">
+    <iframe id="reproductor" src="https://topembed.pw/channel/SkySportsNews[UK]" frameborder="0" allowfullscreen muted="false"></iframe>
+  </div>
 
   <nav>
     <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsNews[UK]')">
@@ -112,14 +134,20 @@
     </button>
   </nav>
 
-  <div class="iframe-container">
-    <iframe id="reproductor" src="" frameborder="0" allowfullscreen></iframe>
-  </div>
-
   <script>
     function cambiarCanal(url) {
-      document.getElementById('reproductor').src = url;
+      const reproductor = document.getElementById('reproductor');
+      reproductor.src = url;
+      reproductor.muted = false; // Intenta activar el sonido (puede no funcionar por políticas del navegador)
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // Desplaza al reproductor
     }
+
+    // Iniciar con el primer canal y sonido activado
+    document.addEventListener('DOMContentLoaded', () => {
+      const reproductor = document.getElementById('reproductor');
+      reproductor.src = 'https://topembed.pw/channel/SkySportsNews[UK]';
+      reproductor.muted = false; // Intenta activar el sonido al cargar
+    });
   </script>
 </body>
 </html>
