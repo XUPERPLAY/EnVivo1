@@ -51,6 +51,7 @@
       border: none;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+      allow="autoplay *; fullscreen *; encrypted-media *";
     }
     nav {
       flex: 1;
@@ -60,7 +61,7 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       overflow-y: auto;
-      max-height: calc(100vh - 60px); /* Ajusta al espacio disponible */
+      max-height: calc(100vh - 60px);
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
       scrollbar-color: #00ffcc #333;
@@ -98,8 +99,6 @@
     nav button:hover {
       background-color: #00ddaa;
     }
-
-    /* Media Queries para pantallas pequeñas y orientación */
     @media (max-width: 768px) {
       .main-container {
         flex-direction: column;
@@ -121,7 +120,6 @@
         padding-bottom: 20px;
       }
     }
-
     @media (max-width: 480px) {
       header {
         font-size: clamp(16px, 4vw, 18px);
@@ -138,7 +136,6 @@
         height: 40vh;
       }
     }
-
     @media (orientation: portrait) and (max-width: 768px) {
       .main-container {
         flex-direction: column;
@@ -153,12 +150,10 @@
   <header>
     🏟️ Deportes en Vivo 2025
   </header>
-
   <div class="main-container">
     <div class="iframe-container">
-      <iframe id="reproductor" src="https://topembed.pw/channel/SkySportsNews[UK]" frameborder="0" allowfullscreen muted="false"></iframe>
+      <iframe id="reproductor" src="https://topembed.pw/channel/SkySportsNews[UK]" frameborder="0" allowfullscreen allow="autoplay *; fullscreen *; encrypted-media *"></iframe>
     </div>
-
     <nav>
       <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsNews[UK]')">
         <img src="https://seeklogo.com/images/S/sky-sports-news-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports News">Sky Sports News
@@ -207,20 +202,23 @@
       </button>
     </nav>
   </div>
-
   <script>
     function cambiarCanal(url) {
       const reproductor = document.getElementById('reproductor');
+      reproductor.removeAttribute('sandbox');
       reproductor.src = url;
-      reproductor.muted = false; // Intenta activar el sonido (puede no funcionar por políticas del navegador)
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // Desplaza al reproductor
+      reproductor.muted = false;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
-    // Iniciar con el primer canal y sonido activado
     document.addEventListener('DOMContentLoaded', () => {
       const reproductor = document.getElementById('reproductor');
+      reproductor.removeAttribute('sandbox');
       reproductor.src = 'https://topembed.pw/channel/SkySportsNews[UK]';
-      reproductor.muted = false; // Intenta activar el sonido al cargar
+      reproductor.muted = false;
+      setTimeout(() => {
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach(iframe => iframe.removeAttribute('sandbox'));
+      }, 1000);
     });
   </script>
 </body>
