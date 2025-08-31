@@ -2,154 +2,58 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Deportes en Vivo</title>
+  <title>Deportes Web</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
-    body {
-      background-color: #000;
-      color: white;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: row;
-      min-height: 100vh;
-      overflow: hidden;
-    }
-    header {
-      background-color: #111;
-      padding: 15px;
-      text-align: center;
-      font-size: clamp(18px, 5vw, 24px);
-      font-weight: bold;
-      color: #00ffcc;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 20;
-    }
-    .main-container {
-      display: flex;
-      flex-direction: row;
-      margin-top: 60px;
-      width: 100%;
-      height: calc(100vh - 60px);
-    }
-    .iframe-container { display: none; } /* Ya no se usa */
-    nav {
-      flex: 1;
-      background-color: #222;
-      padding: 10px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      overflow-y: auto;
-      max-height: calc(100vh - 60px);
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: thin;
-      scrollbar-color: #00ffcc #333;
-    }
-    nav::-webkit-scrollbar {
-      width: 8px;
-    }
-    nav::-webkit-scrollbar-thumb {
-      background-color: #00ffcc;
-      border-radius: 4px;
-    }
-    nav::-webkit-scrollbar-track {
-      background-color: #333;
-    }
-    nav a {
-      margin: 5px;
-      padding: 8px 15px;
-      background-color: #00ffcc;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      color: black;
-      font-weight: bold;
-      font-size: clamp(12px, 3vw, 14px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      text-decoration: none;
-    }
-    nav a img {
-      width: 18px;
-      height: 18px;
-      margin-right: 6px;
-    }
-    nav a:hover {
-      background-color: #00ddaa;
-    }
-
-    @media (max-width: 768px) {
-      .main-container {
-        flex-direction: column;
-      }
-      nav {
-        grid-template-columns: repeat(2, 1fr);
-        max-height: 100vh;
-      }
-    }
+    body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif}
+    header{background:#111;padding:15px;text-align:center;font-size:20px;color:#0ff}
+    #player{width:100%;max-width:900px;margin:10px auto;display:block}
+    nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;padding:10px}
+    .btn{background:#0ff;color:#000;border:none;border-radius:6px;padding:10px;font-weight:bold;cursor:pointer}
   </style>
 </head>
 <body>
-  <header>
-    🏟️ Deportes en Vivo 2025
-  </header>
+  <header>🏟️ Deportes en Vivo (sin sandbox)</header>
 
-  <div class="main-container">
-    <!-- El iframe ya no se usa -->
-    <nav>
-      <!-- Solo se cambiaron los href y se eliminó onclick -->
-      <a href="wiseplay://topembed.pw/channel/SkySportsNews [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-news-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports News">Sky Sports News
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsMainEvent [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-main-event-logo-2A8C7C1C4A-seeklogo.com.png" alt="Sky Sports Main Event">Sky Sports Main Event
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsArena [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-arena-logo-8D8E1D3E8D-seeklogo.com.png" alt="Sky Sports Arena">Sky Sports Arena
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsAction [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-action-logo-6E1E1D3E8D-seeklogo.com.png" alt="Sky Sports Action">Sky Sports Action
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsF1 [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-f1-logo-4A8C7C1C4A-seeklogo.com.png" alt="Sky Sports F1">Sky Sports F1
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsPremierLeague [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-premier-league-logo-6E1E1D3E8D-seeklogo.com.png" alt="Sky Sports Premier League">Sky Sports Premier League
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsFootball [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-football-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports Football">Sky Sports Football
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsGolf [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-golf-logo-2A8C7C1C4A-seeklogo.com.png" alt="Sky Sports Golf">Sky Sports Golf
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsTennis [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-tennis-logo-8D8E1D3E8D-seeklogo.com.png" alt="Sky Sports Tennis">Sky Sports Tennis
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsMix [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-mix-logo-6E1E1D3E8D-seeklogo.com.png" alt="Sky Sports Mix">Sky Sports Mix
-      </a>
-      <a href="wiseplay://topembed.pw/channel/SkySportsRacing [UK]">
-        <img src="https://seeklogo.com/images/S/sky-sports-racing-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports Racing">Sky Sports Racing
-      </a>
-      <a href="wiseplay://topembed.pw/channel/TNTSports1 [UK]">
-        <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 1">TNT Sports 1
-      </a>
-      <a href="wiseplay://topembed.pw/channel/TNTSports2 [UK]">
-        <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 2">TNT Sports 2
-      </a>
-      <a href="wiseplay://topembed.pw/channel/TNTSports3 [UK]">
-        <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 3">TNT Sports 3
-      </a>
-      <a href="wiseplay://topembed.pw/channel/TNTSports4 [UK]">
-        <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 4">TNT Sports 4
-      </a>
-    </nav>
-  </div>
+  <video id="player" controls></video>
+
+  <nav>
+    <button class="btn" onclick="play('SkySportsNews')">Sky Sports News</button>
+    <button class="btn" onclick="play('SkySportsMainEvent')">Sky Sports Main Event</button>
+    <button class="btn" onclick="play('SkySportsArena')">Sky Sports Arena</button>
+    <button class="btn" onclick="play('SkySportsAction')">Sky Sports Action</button>
+    <button class="btn" onclick="play('SkySportsF1')">Sky Sports F1</button>
+    <button class="btn" onclick="play('SkySportsPremierLeague')">Premier League</button>
+    <button class="btn" onclick="play('SkySportsFootball')">Sky Sports Football</button>
+    <button class="btn" onclick="play('SkySportsGolf')">Sky Sports Golf</button>
+    <button class="btn" onclick="play('SkySportsTennis')">Sky Sports Tennis</button>
+    <button class="btn" onclick="play('SkySportsMix')">Sky Sports Mix</button>
+    <button class="btn" onclick="play('SkySportsRacing')">Sky Sports Racing</button>
+    <button class="btn" onclick="play('TNTSports1')">TNT Sports 1</button>
+    <button class="btn" onclick="play('TNTSports2')">TNT Sports 2</button>
+    <button class="btn" onclick="play('TNTSports3')">TNT Sports 3</button>
+    <button class="btn" onclick="play('TNTSports4')">TNT Sports 4</button>
+  </nav>
+
+  <script>
+    const base = 'https://topembed.pw/playlist';
+    const player = document.getElementById('player');
+
+    function play(channel) {
+      const url = `/api/stream?url=${encodeURIComponent(`${base}/${channel}.m3u8`)}`;
+      if (Hls.isSupported()) {
+        const hls = new Hls();
+        hls.loadSource(url);
+        hls.attachMedia(player);
+        player.play();
+      } else if (player.canPlayType('application/vnd.apple.mpegurl')) {
+        player.src = url;
+        player.play();
+      } else {
+        alert('Navegador no compatible con HLS.');
+      }
+    }
+  </script>
 </body>
 </html>
