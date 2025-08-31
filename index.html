@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Deportes en Vivo</title>
+  <style>
+    body {
+      background-color: #000;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #111;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #00ffcc;
+    }
+    nav {
+      background-color: #222;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    nav button {
+      margin: 5px;
+      padding: 10px 20px;
+      background-color: #00ffcc;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: black;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    nav button img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+    nav button:hover {
+      background-color: #00ddaa;
+    }
+    .iframe-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+    iframe {
+      width: 80%;
+      height: 480px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    🏟️ Deportes en Vivo 2025
+  </header>
+
+  <nav>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsNews[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-news-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports News">Sky Sports News
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsMainEvent[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-main-event-logo-2A8C7C1C4A-seeklogo.com.png" alt="Sky Sports Main Event">Sky Sports Main Event
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsArena[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-arena-logo-8D8E1D3E8D-seeklogo.com.png" alt="Sky Sports Arena">Sky Sports Arena
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsAction[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-action-logo-6E1E1D3E8D-seeklogo.com.png" alt="Sky Sports Action">Sky Sports Action
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsF1[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-f1-logo-4A8C7C1C4A-seeklogo.com.png" alt="Sky Sports F1">Sky Sports F1
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsPremierLeague[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-premier-league-logo-6E1E1D3E8D-seeklogo.com.png" alt="Sky Sports Premier League">Sky Sports Premier League
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsFootball[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-football-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports Football">Sky Sports Football
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsGolf[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-golf-logo-2A8C7C1C4A-seeklogo.com.png" alt="Sky Sports Golf">Sky Sports Golf
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsTennis[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-tennis-logo-8D8E1D3E8D-seeklogo.com.png" alt="Sky Sports Tennis">Sky Sports Tennis
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsMix[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-mix-logo-6E1E1D3E8D-seeklogo.com.png" alt="Sky Sports Mix">Sky Sports Mix
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/SkySportsRacing[UK]')">
+      <img src="https://seeklogo.com/images/S/sky-sports-racing-logo-9D7E0F3D2F-seeklogo.com.png" alt="Sky Sports Racing">Sky Sports Racing
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/TNTSports1[UK]')">
+      <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 1">TNT Sports 1
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/TNTSports2[UK]')">
+      <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 2">TNT Sports 2
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/TNTSports3[UK]')">
+      <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 3">TNT Sports 3
+    </button>
+    <button onclick="cambiarCanal('https://topembed.pw/channel/TNTSports4[UK]')">
+      <img src="https://seeklogo.com/images/T/tnt-sports-logo-0A8C7C1C4A-seeklogo.com.png" alt="TNT Sports 4">TNT Sports 4
+    </button>
+  </nav>
+
+  <div class="iframe-container">
+    <iframe id="reproductor" src="" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <script>
+    function cambiarCanal(url) {
+      document.getElementById('reproductor').src = url;
+    }
+  </script>
+</body>
+</html>
