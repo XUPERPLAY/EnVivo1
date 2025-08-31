@@ -1,28 +1,22 @@
 export const config = { runtime: 'edge' };
 
-export default async function (req) {
+export default async function handler(req) {
   try {
     const url = new URL(req.url);
-    let raw = url.searchParams.get('url');
+    const raw = url.searchParams.get('url');
     if (!raw) return new Response('Falta ?url=...', { status: 400 });
-
-    // Aseguramos que la URL esté bien formada
-    raw = encodeURI(decodeURI(raw));
 
     const res = await fetch(raw, {
       headers: {
         'user-agent': 'Mozilla/5.0',
-        referer: 'https://topembed.pw/',
-        origin: 'https://topembed.pw'
+        referer: new URL(raw).origin,
       },
       redirect: 'follow'
     });
 
     if (!res.ok) {
-      return new Response(
-        `Upstream ${res.status}: ${await res.text()}`.slice(0, 400),
-        { status: res.status }
-      );
+      const txt = await res.text();
+      return new Response(`Upstream ${res.status}: ${txt.slice(0, 300)}`, { status: res.status });
     }
 
     return new Response(res.body, {
@@ -33,7 +27,7 @@ export default async function (req) {
       }
     });
 
-  } catch (err) {
-    return new Response(`Crash: ${err.message}`, { status: 500 });
+  } catch (e) {
+    return new Response(`Error: ${e.message}`, { status: 500 });
   }
 }
